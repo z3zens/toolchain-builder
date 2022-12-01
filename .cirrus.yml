@@ -6,7 +6,7 @@ task:
   name: "Clang-Build"
   timeout_in: 120m
   container:
-      image: ghcr.io/neutron-projects/docker-image:arch-neutron
+      image: panchajanya1999/archlinux:latest
       cpu: 8
       memory: 32G
 
