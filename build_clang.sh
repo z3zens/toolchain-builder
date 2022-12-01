@@ -34,7 +34,7 @@ LLVM_BUILD="$BUILDDIR/llvm-build"
 
 if [[ $CI -eq 1 ]]; then
     telegram-send --format html "\
-		<b>🔨 Neutron Clang Build Started</b>
+		<b>🔨 Wurtzite Clang Build Started</b>
 		Build Date: <code>$(date +"%Y-%m-%d %H:%M")</code>"
 fi
 
@@ -131,7 +131,7 @@ build_temp_binutils() {
         --enable-threads \
         --enable-ld=default \
         --quiet \
-        --with-pkgversion="Neutron Binutils"
+        --with-pkgversion="Wurtzite Binutils"
 
     make -s -j"$(nproc --all)" >/dev/null
     make install -s -j"$(nproc --all)" >/dev/null
@@ -381,7 +381,7 @@ cmake -G Ninja -Wno-dev --log-level=NOTICE \
     -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
     -DCOMPILER_RT_BUILD_XRAY=OFF \
     -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
-    -DCLANG_VENDOR="Neutron" \
+    -DCLANG_VENDOR="Wurtzite" \
     -DLLVM_ENABLE_BACKTRACES=OFF \
     -DLLVM_ENABLE_WARNINGS=OFF \
     -DLLVM_ENABLE_LTO=Thin \
@@ -444,7 +444,7 @@ if [[ $POLLY_OPT -eq 1 ]]; then
 fi
 
 cmake -G Ninja -Wno-dev --log-level=NOTICE \
-    -DCLANG_VENDOR="Neutron" \
+    -DCLANG_VENDOR="Wurtzite" \
     -DLLVM_TARGETS_TO_BUILD='AArch64;ARM;X86' \
     -DCMAKE_BUILD_TYPE=Release \
     -DLLVM_ENABLE_WARNINGS=OFF \
@@ -643,7 +643,7 @@ else
 fi
 cd "$OUT"
 cmake -G Ninja -Wno-dev --log-level=NOTICE \
-    -DCLANG_VENDOR="Neutron" \
+    -DCLANG_VENDOR="Wurtzite" \
     -DLLVM_TARGETS_TO_BUILD='AArch64;ARM;X86' \
     -DCMAKE_BUILD_TYPE=Release \
     -DLLVM_TOOL_CLANG_BUILD=ON \

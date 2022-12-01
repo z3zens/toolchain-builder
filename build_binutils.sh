@@ -45,7 +45,7 @@ build() {
                 --enable-targets=x86_64-pep \
                 --enable-ld=default \
                 --quiet \
-                --with-pkgversion="Neutron Binutils"
+                --with-pkgversion="Wurtzite Binutils"
             ;;
         "ARM64")
             "$BINUTILS_DIR"/configure \
@@ -76,7 +76,7 @@ build() {
                 --enable-threads \
                 --enable-ld=default \
                 --quiet \
-                --with-pkgversion="Neutron Binutils"
+                --with-pkgversion="Wurtzite Binutils"
             ;;
         "ARM")
             "$BINUTILS_DIR"/configure \
@@ -107,7 +107,7 @@ build() {
                 --enable-threads \
                 --enable-ld=default \
                 --quiet \
-                --with-pkgversion="Neutron Binutils"
+                --with-pkgversion="Wurtzite Binutils"
             ;;
         *)
             echo "You have specified a wrong architecture type or one that we do not support! Do specify the correct one or feel free to make a PR with the relevant changes to add support to the architecture that you are trying to build this toolchain for."

@@ -6,23 +6,23 @@ set -e
 CURRENT_DIR=$(pwd)
 BINUTILS_DIR="$CURRENT_DIR/binutils-gdb"
 LLVM_DIR="$CURRENT_DIR/llvm-project"
-NEUTRON_DIR="$CURRENT_DIR/clang-build-catalogue"
+Wurtzite_DIR="$CURRENT_DIR/clang-build-catalogue"
 INSTALL_DIR="$CURRENT_DIR/install"
 
 rel_tag="$(date "+%d%m%Y")"      # "{date}{month}{year}" format
 rel_date="$(date "+%-d %B, %Y")" # "Day Month, Year" format
-rel_file="$CURRENT_DIR/neutron-clang-$rel_tag.tar.zst"
+rel_file="$CURRENT_DIR/wurtzite-clang-$rel_tag.tar.zst"
 
-neutron_clone() {
+wurtzite_clone() {
 
-    if ! git clone https://github.com/Neutron-Toolchains/clang-build-catalogue.git; then
+    if ! git clone https://github.com/nerdprojectorg/clang-build-catalogue.git; then
         exit 1
     fi
 }
 
-neutron_pull() {
+wurtzite_pull() {
 
-    if ! git pull https://github.com/Neutron-Toolchains/clang-build-catalogue.git; then
+    if ! git pull https://github.com/nerdprojectorg/clang-build-catalogue.git; then
         exit 1
     fi
 }
@@ -47,17 +47,17 @@ h_glibc="$(ldd --version | head -n1 | grep -oE '[^ ]+$')"
 cd "$CURRENT_DIR"
 builder_commit="$(git rev-parse HEAD)"
 
-if [ -d "$NEUTRON_DIR"/ ]; then
-    cd "$NEUTRON_DIR"/
+if [ -d "$Wurtzite_DIR"/ ]; then
+    cd "$Wurtzite_DIR"/
     if ! git status; then
         cd "$CURRENT_DIR"
-        neutron_clone
+        wurtzite_clone
     else
-        neutron_pull
+        wurtzite_pull
         cd "$CURRENT_DIR"
     fi
 else
-    neutron_clone
+    wurtzite_clone
 fi
 
 cd "$INSTALL_DIR"
@@ -65,7 +65,7 @@ tar --zstd -cf "${rel_file}" .
 rel_shasum=$(sha256sum "${rel_file}" | awk '{print $1}')
 rel_size=$(du -sh "${rel_file}" | awk '{print $1}')
 
-cd "$NEUTRON_DIR"
+cd "$Wurtzite_DIR"
 rm -rf latest.txt
 touch latest.txt
 echo -e "[tag]\n $rel_tag" >>latest.txt
@@ -83,15 +83,15 @@ touch "$rel_tag-info.txt"
 } >>"$rel_tag-info.txt"
 
 git add -A
-git commit -asm "catalogue: Add Neutron Clang build $rel_tag
+git commit -asm "catalogue: Add Wurtzite Clang build $rel_tag
 
 Build completed on: $rel_date
 LLVM commit: $llvm_commit_url
 Clang Version: $clang_version
 Binutils version: $binutils_ver
 Binutils at commit: $binutils_commit_url
-Builder at commit: https://github.com/Neutron-Toolchains/clang-build/commit/$builder_commit
-Release: https://github.com/Neutron-Toolchains/clang-build-catalogue/releases/tag/$rel_tag"
+Builder at commit: https://github.com/nerdprojectorg/clang-build/commit/$builder_commit
+Release: https://github.com/nerdprojectorg/clang-build-catalogue/releases/tag/$rel_tag"
 git gc
 
 if gh release view "${rel_tag}"; then

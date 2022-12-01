@@ -3,7 +3,7 @@ linux-*.tar.xz
 linux-*/
 llvm-build/
 llvm-project/
-neutron-clang/
+wurtzite-clang/
 binutils-build/
 binutils-gdb/
 

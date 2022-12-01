@@ -1,0 +1,23 @@
+env:
+    # Cirrus Specific Vars (Do *NOT* Change)
+    CIRRUS_SHELL: bash
+
+task:
+  name: "Clang-Build"
+  timeout_in: 120m
+  container:
+      image: ghcr.io/neutron-projects/docker-image:arch-neutron
+      cpu: 8
+      memory: 32G
+
+  build-clang_script:
+      - bash -c "$(curl https://raw.githubusercontent.com/z3zens/toolchain-builder/main/build_clang.sh)"
+
+  build-binutils_script:
+      - bash -c "$(curl https://raw.githubusercontent.com/z3zens/toolchain-builder/main/build_binutils.sh)"
+
+  post-build_script:
+      - bash -c "$(curl https://raw.githubusercontent.com/z3zens/toolchain-builder/main/post_build.sh)"
+
+  push_script:
+      - bash -c "$(curl https://raw.githubusercontent.com/z3zens/toolchain-builder/main/push.sh)"
