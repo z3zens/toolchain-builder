@@ -34,7 +34,7 @@ build() {
                 --disable-readline \
                 --disable-sim \
                 --disable-werror \
-                --enable-lto \
+                --disable-lto \
                 --enable-relro \
                 --with-pic \
                 --enable-deterministic-archives \
@@ -68,7 +68,7 @@ build() {
                 --disable-nls \
                 --with-gnu-as \
                 --with-gnu-ld \
-                --enable-lto \
+                --disable-lto \
                 --enable-deterministic-archives \
                 --enable-new-dtags \
                 --enable-plugins \
@@ -99,7 +99,7 @@ build() {
                 --disable-nls \
                 --with-gnu-as \
                 --with-gnu-ld \
-                --enable-lto \
+                --disable-lto \
                 --enable-deterministic-archives \
                 --enable-new-dtags \
                 --enable-plugins \

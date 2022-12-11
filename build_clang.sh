@@ -123,7 +123,7 @@ build_temp_binutils() {
         --disable-nls \
         --with-gnu-as \
         --with-gnu-ld \
-        --enable-lto \
+        --disable-lto \
         --enable-deterministic-archives \
         --enable-new-dtags \
         --enable-plugins \
@@ -384,7 +384,7 @@ cmake -G Ninja -Wno-dev --log-level=NOTICE \
     -DCLANG_VENDOR="Wurtzite" \
     -DLLVM_ENABLE_BACKTRACES=OFF \
     -DLLVM_ENABLE_WARNINGS=OFF \
-    -DLLVM_ENABLE_LTO=Thin \
+    -DLLVM_ENABLE_LTO=OFF \
     -DCMAKE_C_COMPILER="$LLVM_BIN_DIR"/clang \
     -DCMAKE_CXX_COMPILER="$LLVM_BIN_DIR"/clang++ \
     -DCMAKE_AR="$LLVM_BIN_DIR"/llvm-ar \
@@ -463,7 +463,7 @@ cmake -G Ninja -Wno-dev --log-level=NOTICE \
     -DCOMPILER_RT_BUILD_CRT=OFF \
     -DCOMPILER_RT_BUILD_XRAY=OFF \
     -DLLVM_ENABLE_TERMINFO=OFF \
-    -DLLVM_ENABLE_LTO=Thin \
+    -DLLVM_ENABLE_LTO=OFF \
     -DCMAKE_C_COMPILER="$STAGE1"/clang \
     -DCMAKE_CXX_COMPILER="$STAGE1"/clang++ \
     -DCMAKE_AR="$STAGE1"/llvm-ar \
@@ -664,7 +664,7 @@ cmake -G Ninja -Wno-dev --log-level=NOTICE \
     -DCOMPILER_RT_BUILD_CRT=OFF \
     -DCOMPILER_RT_BUILD_XRAY=OFF \
     -DLLVM_ENABLE_TERMINFO=OFF \
-    -DLLVM_ENABLE_LTO=Full \
+    -DLLVM_ENABLE_LTO=OFF \
     -DCMAKE_C_COMPILER="$STAGE1"/clang \
     -DCMAKE_CXX_COMPILER="$STAGE1"/clang++ \
     -DCMAKE_AR="$STAGE1"/llvm-ar \
