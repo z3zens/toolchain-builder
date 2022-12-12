@@ -10,11 +10,11 @@ task:
       cpu: 8
       memory: 32G
 
-  build-clang_script:
-      - bash -c "$(curl https://raw.githubusercontent.com/z3zens/toolchain-builder/main/build_clang.sh)"
-
   build-binutils_script:
       - bash -c "$(curl https://raw.githubusercontent.com/z3zens/toolchain-builder/main/build_binutils.sh)"
+
+  build-clang_script:
+      - bash -c "$(curl https://raw.githubusercontent.com/z3zens/toolchain-builder/main/build_clang.sh)"
 
   post-build_script:
       - bash -c "$(curl https://raw.githubusercontent.com/z3zens/toolchain-builder/main/post_build.sh)"
